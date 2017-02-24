@@ -101,6 +101,9 @@ public class Main
 			System.out.println("udn1: " + curstate + ":"+ c1.getDescription(curstate));
 			curstate = c1.getNextState(curstate, ';');		
 			System.out.println("udn1: " + curstate + ":"+ c1.getDescription(curstate));
+
+			Lexer lex = new Lexer("test.spl");
+			System.out.println(lex);
 			//error states
 		//isAccepting
 		//isKeyword

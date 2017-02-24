@@ -4,6 +4,31 @@ public class Context
 	private String description[];
 	private String keywords[];
 	
+	/*	note: states are represented as integers
+	
+		context has the following functions:
+		
+		public int getNextState(int state, char x)
+		//based on a current state and an input character, 
+			this function returns the next state
+				
+		public String getDescription(int state)
+		//if the state is accepting, then it gives the name of the
+			token class
+		//it also gives the specific errors which could occur;
+			errors are states 41 and up
+			
+		
+		public boolean isAccepting(int state)
+		//checks whether a state is accepting, so
+			at the end of a word if it is accepting, then 
+			it is a valid word in the regular expression
+		
+		public int isKeyword(String word)
+		//checks whether an word is part of the
+			keywords or special words that we have
+	*/
+	
 	Context()
 	{
 		//fill the transitionTable
@@ -13,7 +38,7 @@ public class Context
 		{
 				{13, 43, 2, 14, 15, 3, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1},		//0- initial
 				{43, 43, 2, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43},		//1- only a "-"
-				{43, 1, 1, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41},		//2*- number
+				{43, 2, 2, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41},		//2*- number
 				{4, 4, 4, 48, 48, 12, 4, 48, 48, 48, 48, 48, 48, 48, 48, 48},		//3- has an opening "		
 				{5, 5, 5, 48, 48, 12, 5, 48, 48, 48, 48, 48, 48, 48, 48, 48},		//4- short string with 1 char
 				{6, 6, 6, 48, 48, 12, 6, 48, 48, 48, 48, 48, 48, 48, 48, 48},		//5- short string with 2 char
@@ -123,9 +148,10 @@ public class Context
 		//returns -1 if it is not keword
 		//else returns the state
 		
-		for (int i = 0; i < keywords.length; i++)
+		for (int i = 0; i < keywords.length; i++) 
 			if (word.equals(keywords[i]))
 				return i + 25;
+		
 		
 		return -1;
 	}
