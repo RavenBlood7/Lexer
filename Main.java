@@ -103,18 +103,22 @@ public class Main
 			curstate = c1.getNextState(curstate, ';');		
 			System.out.println("udn1: " + curstate + ":"+ c1.getDescription(curstate));
 			*/
+			if(args.length == 0) {
+				System.out.println("Please put in the name of the file you would like to Lexically Analyse.");
+			} else {
+				Lexer lex = new Lexer(args[0]);
+				//System.out.print(lex);
+
+				String file = "lexeroutput";
+				Scanner scan = new Scanner(System.in);
+
+				FileWriter fw = new FileWriter(file);
+				fw.write(lex.toString());
+				System.out.println("Lexical Analysis output saved to file '"+ file +"'");
+				scan.close();
+				fw.close();
+			}
 			
-			Lexer lex = new Lexer(args[0]);
-			//System.out.print(lex);
-
-			String file = "lexeroutput";
-			Scanner scan = new Scanner(System.in);
-
-			FileWriter fw = new FileWriter(file);
-			fw.write(lex.toString());
-			System.out.println("Lexical Analysis output saved to file '"+ file +"'");
-			scan.close();
-			fw.close();
 
 			//error states
 		//isAccepting
