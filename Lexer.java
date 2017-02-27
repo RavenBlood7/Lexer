@@ -57,6 +57,7 @@ public class Lexer
 		            	}
 		            	
 		            } else if (state > 41) {
+		            	snippet += c; 
 		            	System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
 		            	System.exit(1);
 		            	//System.out.println("ERROR " + context.getDescription(state) +  ": " + snippet);
@@ -70,27 +71,49 @@ public class Lexer
 	        }	
 
 	        //This code is to handle when there is no space or linebreak (showing the end)
-	         //This code is questionable to say the least. Although it solves the problem of no 
-	        //spaces/linebreaks for some tokens, for others it doesn't work. 
+	        //It also takes care of incomplete strings 
+	        //It handles a case where there is only one inverted comma followed by nothing
 	        
-	        //There is still a problem with incomplete tokens  // problem if last token is symbol or an incomplete str
-	        	//TODO: need a way to check if a token is done or not at the end of the file
-	        // check if final state is nice
+	        if (state >= 3 && state <= 11) {        		
+        		System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
+        		System.exit(1);
+        	}
+	        
 
-	        String type = context.getDescription(state);
-	        state = context.getNextState(state, ' ');
+	        String type = "";
+	        
+	        for (int i = 0; i < 2; i++) {
+		        type = context.getDescription(state);
+		        state = context.getNextState(state, c);
+		        
+		        if (type.equals("initial"))
+		        	snippet += c; 
+		        
 
-	        if (state == 41) {
-            	if (type.equals("space") || type.equals("newline")) {}
-            	else if (context.isKeyword(snippet) > 0 ) 
-            		type = "keyword";
-            	lst.addToken(type, snippet);
-            	
-	        } else if (state > 41) {
-	        	System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
-		        System.exit(1);
+		        if (state == 41) {
+	            	if (type.equals("space") || type.equals("newline") || type.equals("done")) {}
+	            	else if (context.isKeyword(snippet) > 0 ) {
+	            		type = "keyword";
+	            		lst.addToken(type, snippet);
+	            	} else {
+	            		lst.addToken(type, snippet);
+	            	}
+	            	
+		        } else if (state > 41) {
+		        	System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
+			        System.exit(1);
+		        }
+		        c = ' ';
 	        }
 
+	        //Because when opening the "" the state is initial. So if there are no spaces at the end of the 
+	        //.spl file then the state is initial and it doesn't see the problem Only after artificial spaces
+	        //are added that it sees the issue. 
+	        if (state >= 3 && state <= 11) {        		
+        		System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
+        		System.exit(1);
+        	}
+	        
 	        sc.close();
 	    } 
 	    catch (FileNotFoundException e) {
