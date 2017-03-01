@@ -14,7 +14,7 @@ public class Lexer
 		//if the state is accepting, then it gives the name of the
 			token class
 		//it also gives the specific errors which could occur;
-			errors are states 41 and up
+			errors are states 42 and up
 			
 		
 		public boolean isAccepting(int state)
@@ -26,5 +26,7 @@ public class Lexer
 		//checks whether an word is part of the
 			keywords or special words that we have
 	*/
+	
+	//
 	
 }
