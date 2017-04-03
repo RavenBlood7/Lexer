@@ -1,9 +1,55 @@
-0	integer	13434
-1	integer	43
-2	integer	324
-3	integer	2343424
-4	integer	43
-5	integer	34
-6	integer	3244
-7	integer	434
-8	integer	434343884
+0	user-defined name	n
+1	assignment operator	=
+2	short string	"s b"
+3	grouping symbol	;
+4	user-defined name	n
+5	assignment operator	=
+6	short string	"p "
+7	grouping symbol	;
+8	user-defined name	m
+9	assignment operator	=
+10	short string	" jte "
+11	grouping symbol	;
+12	user-defined name	n
+13	assignment operator	=
+14	zero	0
+15	grouping symbol	;
+16	keyword	output
+17	grouping symbol	(
+18	user-defined name	x
+19	grouping symbol	)
+20	grouping symbol	;
+21	keyword	output
+22	grouping symbol	(
+23	user-defined name	y
+24	grouping symbol	)
+25	grouping symbol	;
+26	keyword	halt
+27	grouping symbol	;
+28	keyword	proc
+29	user-defined name	n
+30	grouping symbol	{
+31	keyword	halt
+32	grouping symbol	;
+33	keyword	proc
+34	user-defined name	n
+35	grouping symbol	{
+36	keyword	output
+37	grouping symbol	(
+38	user-defined name	o
+39	grouping symbol	)
+40	grouping symbol	;
+41	keyword	proc
+42	user-defined name	g
+43	grouping symbol	{
+44	user-defined name	num
+45	assignment operator	=
+46	integer	5
+47	grouping symbol	;
+48	keyword	output
+49	grouping symbol	(
+50	user-defined name	yes
+51	grouping symbol	)
+52	grouping symbol	}
+53	grouping symbol	}
+54	grouping symbol	}

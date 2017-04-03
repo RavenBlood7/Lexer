@@ -74,7 +74,7 @@ public class Lexer
 	        //It also takes care of incomplete strings 
 	        //It handles a case where there is only one inverted comma followed by nothing
 	        
-	        if (state >= 3 && state <= 11) {        		
+	        if (state >= 3 && state <= 11 && state != -1) {        		
         		System.out.println("Lexical Error: |" + snippet + "| = " + context.getDescription(state) + ". Scanning aborted.");
         		System.exit(1);
         	}

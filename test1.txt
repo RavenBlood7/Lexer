@@ -1,0 +1,19 @@
+n ="s b";
+ n = "p ";
+m  = " jte ";
+n=0;
+
+
+output(x);
+output(y);
+halt;
+proc n {halt;
+ proc n { 
+ output(o);
+ proc g {
+ num = 5;
+ output(yes)
+ }
+ }
+}
+

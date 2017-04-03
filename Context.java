@@ -36,7 +36,7 @@ public class Context
 		
 		
 		{
-				{13, 43, 2, 14, 15, 3, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1},		//0- initial
+				{13, -1, 2, 14, 15, 3, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1},		//0- initial
 				{43, 43, 2, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43, 43},		//1- only a "-"
 				{43, 2, 2, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41, 41},		//2*- number
 				{4, 4, 4, 48, 48, 12, 4, 48, 48, 48, 48, 48, 48, 48, 48, 48},		//3- has an opening "		
@@ -123,6 +123,9 @@ public class Context
 	
 	public int getNextState(int state, char x)
 	{
+		//special zero case
+		if (state == -1) return 41;
+		
 		if (state > 13) return 41;
 		
 		int index = getCharIndex(x);
@@ -132,11 +135,14 @@ public class Context
 	
 	public String getDescription(int state)
 	{
-		return description[state];
+		//special zero  case
+		if (state == -1) return "integer";
+		else	return description[state];
 	}
 	
 	public boolean isAccepting(int state)
 	{
+		if (state == -1) return true;
 		if (state == 2) return true;
 		if (state > 11 && state < 16) return true;
 		if (state > 17 && state < 41) return true;
